@@ -1,10 +1,12 @@
 ---
-interface Props {
+// Seccion para JS
+interface Props { // Typescript prop (Forma de validar)
 	title: string;
 }
 
-const { title } = Astro.props;
+const { title } = Astro.props; // Forma de acceder a las props
 ---
+<!-- Seccion para la estructura -->
 
 <!doctype html>
 <html lang="en">
@@ -20,7 +22,11 @@ const { title } = Astro.props;
 		<slot />
 	</body>
 </html>
-<style is:global>
+
+<!-- Seccion para los estilos (estos estilos tiene scope y solo funcionan en ese archivo a no ser q se utilicen directivas)
+  	Utiza la directiva is:global para hacer estos estilos globales -->
+
+<style is:global> 
 	:root {
 		--accent: 136, 58, 234;
 		--accent-light: 224, 204, 250;
