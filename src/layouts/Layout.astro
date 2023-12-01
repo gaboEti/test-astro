@@ -1,11 +1,13 @@
 ---
 // Seccion para JS
+import Header from '../components/Header.astro';
 interface Props { // Typescript prop (Forma de validar)
 	title: string;
 }
 
 const { title } = Astro.props; // Forma de acceder a las props
 ---
+<!-- Los componentes Layout estan pensado para envolver otros componetes -->
 <!-- Seccion para la estructura -->
 
 <!doctype html>
@@ -18,8 +20,11 @@ const { title } = Astro.props; // Forma de acceder a las props
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
-	<body>
-		<slot />
+	<body class="bg-gray-900 min-h-screen pb-32">
+		<Header /> <!-- Se pone el header en el Layout para q salga en todas las pages -->
+		<main class="max-w-5xl px-4 m-auto">
+			<slot /> <!-- Es como children en React ahi es donde se pone todo lo q esta enuelto --> 
+		</main>
 	</body>
 </html>
 
@@ -27,31 +32,10 @@ const { title } = Astro.props; // Forma de acceder a las props
   	Utiza la directiva is:global para hacer estos estilos globales -->
 
 <style is:global> 
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-	}
 	html {
 		font-family: system-ui, sans-serif;
 		background: #13151a;
 		background-size: 224px;
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
+		color-scheme: dark light;
 	}
 </style>
