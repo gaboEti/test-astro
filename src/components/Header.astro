@@ -1,11 +1,13 @@
 ---
 // Seccion para JS
+import { Counter } from "./Counter";
 import HeaderButton from "./HeaderButton.astro";
 ---
 
 <!-- Seccion para la estructura -->
 <!-- Componente Header utilizando los estilos de tailwind -->
-<header class="py-8 px-4 mx-auto max-w-xl lg:py-16 lg:px-6">
+<!-- Los componentes dinamicos se reinician cuando se cambia de pagina para evitar esto se utiliza la directiva transition -->
+<header transition:persist class="py-8 px-4 mx-auto max-w-xl lg:py-16 lg:px-6">
     <div class="mx-auto text-center mb-8 lg:mb-16">
         <h2 class="mb-4 text-5xl tracking-tight font-extrabold text-white">
             SpaceX Launches: 🚀
@@ -14,6 +16,10 @@ import HeaderButton from "./HeaderButton.astro";
             All the information about SpaceX Launches
         </p>
     </div>
+
+    <!-- A los componentes q no son propios de astro y dinamicos hay q ponerles la directiva client (islas dinamicas) 
+    xq astro por defecto no carga js-->
+    <Counter client:visible />
 
     <nav class="flex flex-col items-center justify-between w-full text-center md:flex-row">
         <HeaderButton class="text-white" href="/">
